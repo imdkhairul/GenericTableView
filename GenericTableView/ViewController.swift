@@ -8,13 +8,19 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ViewController: GenericTableVIewController<RecentItem> {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        self.didSelect = { recentitem in
+            print(recentitem)
+        }
     }
-
+    required init?(coder aDecoder: NSCoder) {
+        let recentItems:[RecentItem] = [.album(Album(title: "Benson and Hedges", genre: "Rock")), .artist(Artist(name:"Johnson")),.album(Album(title: "Benson and Hedges", genre: "Rock")), .artist(Artist(name:"Johnson")),.album(Album(title: "Benson and Hedges", genre: "Rock")), .artist(Artist(name:"Johnson")),.album(Album(title: "Benson and Hedges", genre: "Rock")), .artist(Artist(name:"Johnson")),.album(Album(title: "Benson and Hedges", genre: "Rock")), .artist(Artist(name:"Johnson"))]
+        super.init(items: recentItems, cellDescriptor:{$0.cellDescriptor})
+    }
+    
 
 }
 
